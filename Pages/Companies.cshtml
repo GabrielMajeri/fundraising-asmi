@@ -1,0 +1,14 @@
+@page
+@model CompaniesModel
+@{
+    ViewData["Title"] = "Companii";
+}
+
+<h1>Companii</h1>
+
+<ul>
+    @foreach (var company in Model.Companies)
+    {
+        <li>@company.Name</li>
+    }
+</ul>
