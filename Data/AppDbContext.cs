@@ -11,7 +11,6 @@ namespace Asmi.Fundraising.Models
         /// Clears and initializes the database with mock data.
         public void Seed()
         {
-            Database.EnsureCreated();
             Database.EnsureDeleted();
             Database.EnsureCreated();
             SaveChanges();

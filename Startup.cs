@@ -1,4 +1,8 @@
+using System.Net;
+using System.Threading.Tasks;
 using Asmi.Fundraising.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +23,37 @@ namespace Asmi.Fundraising
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-
             var connectionString = Configuration.GetConnectionString("FundraisingDB");
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie()
+                .AddGoogle(options =>
+                {
+                    var googleAuth = Configuration.GetSection("Authentication:Google");
+                    options.ClientId = googleAuth["ClientId"];
+                    options.ClientSecret = googleAuth["ClientSecret"];
+
+                    options.Events = new OAuthEvents
+                    {
+                        // Make the authentication client only display @asmi.ro addresses.
+                        OnRedirectToAuthorizationEndpoint = context =>
+                        {
+                            context.Response.Redirect(context.RedirectUri + "&hd=" + WebUtility.UrlEncode("asmi.ro"));
+
+                            return Task.CompletedTask;
+                        },
+                    };
+                });
+
+            services.AddControllers();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AllowAnonymousToPage("/Index");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
@@ -35,13 +66,25 @@ namespace Asmi.Fundraising
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseStatusCodePages();
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => endpoints.MapRazorPages());
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+
+                endpoints.MapRazorPages()
+                    .RequireAuthorization();
+            });
         }
     }
 }
