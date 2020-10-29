@@ -22,11 +22,10 @@ namespace Asmi.Fundraising
             services.AddRazorPages();
 
             var connectionString = Configuration.GetConnectionString("FundraisingDB");
-            services.AddDbContext<AppContext>(
-                options => options.UseNpgsql(connectionString));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
         {
             if (env.IsDevelopment())
             {

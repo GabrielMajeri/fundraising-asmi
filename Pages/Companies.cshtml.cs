@@ -9,11 +9,11 @@ namespace Asmi.Fundraising.Pages
 {
     public class CompaniesModel : PageModel
     {
-        private AppContext context;
+        private AppDbContext context;
 
         public IList<Company> Companies { get; set; }
 
-        public CompaniesModel(AppContext context)
+        public CompaniesModel(AppDbContext context)
         {
             this.context = context;
         }

@@ -7,9 +7,9 @@ namespace Asmi.Fundraising.Pages
 {
     public class CompanyModel : PageModel
     {
-        private readonly AppContext context;
+        private readonly AppDbContext context;
 
-        public CompanyModel(AppContext context)
+        public CompanyModel(AppDbContext context)
         {
             this.context = context;
         }

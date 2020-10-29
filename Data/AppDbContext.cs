@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Asmi.Fundraising.Models
 {
-    public class AppContext : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Company> Companies { get; set; }
 
-        public AppContext(DbContextOptions<AppContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         /// Clears and initializes the database with mock data.
         public void Seed()
