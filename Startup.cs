@@ -1,6 +1,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Asmi.Fundraising.Data;
+using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
