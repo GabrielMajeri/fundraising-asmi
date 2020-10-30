@@ -8,5 +8,9 @@ namespace Asmi.Fundraising.Models
 
         [Required]
         public string Name { get; set; }
+
+        [DataType(DataType.Url)]
+        [Required]
+        public string Site { get; set; }
     }
 }

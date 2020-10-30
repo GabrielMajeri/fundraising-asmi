@@ -19,15 +19,15 @@ namespace Asmi.Fundraising.Data
 
             var companies = new Company[]
             {
-                new Company { Name = "Autodesk" },
-                new Company { Name = "Mindit" },
-                new Company { Name = "Softbinator" },
-                new Company { Name = "Fitbit" },
-                new Company { Name = "Luxoft" },
-                new Company { Name = "Ubisoft" },
-                new Company { Name = "Accenture" },
-                new Company { Name = "Adobe" },
-                new Company { Name = "Microsoft" },
+                new Company { Name = "Autodesk", Site = "https://www.autodesk.eu/" },
+                new Company { Name = "Mindit", Site = "https://www.mindit.io/" },
+                new Company { Name = "Softbinator", Site = "https://www.softbinator.com/" },
+                new Company { Name = "Fitbit", Site = "https://www.fitbit.com/global/eu/home" },
+                new Company { Name = "Luxoft", Site = "https://www.luxoft.com/" },
+                new Company { Name = "Ubisoft", Site = "https://www.ubisoft.com/en-us/" },
+                new Company { Name = "Accenture", Site = "https://www.accenture.com/ro-en" },
+                new Company { Name = "Adobe", Site = "https://www.adobe.com/ro/" },
+                new Company { Name = "Microsoft", Site = "https://www.microsoft.com/ro-ro" },
             };
             Companies.AddRange(companies);
 
