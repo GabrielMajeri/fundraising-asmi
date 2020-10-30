@@ -1,10 +1,10 @@
 using System.Net;
 using System.Threading.Tasks;
-using Asmi.Fundraising.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Asmi.Fundraising.Data;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +26,10 @@ namespace Asmi.Fundraising
             var connectionString = Configuration.GetConnectionString("FundraisingDB");
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                })
-                .AddCookie()
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddAuthentication()
                 .AddGoogle(options =>
                 {
                     var googleAuth = Configuration.GetSection("Authentication:Google");

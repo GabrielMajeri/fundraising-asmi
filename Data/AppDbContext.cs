@@ -1,8 +1,10 @@
+using Asmi.Fundraising.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Asmi.Fundraising.Models
+namespace Asmi.Fundraising.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Company> Companies { get; set; }
 
