@@ -18,5 +18,7 @@ namespace Asmi.Fundraising.Models
 
         [Required]
         public string Edition { get; set; }
+
+        public Image Logo { get; set; }
     }
 }

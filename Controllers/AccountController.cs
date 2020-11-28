@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Asmi.Fundraising.Controllers
 {
+    /// <summary>
+    /// Provides authentication using the <c>@asmi.ro</c> account.
+    /// </summary>
     [AllowAnonymous]
     [ApiController]
     [Route("[controller]")]

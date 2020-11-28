@@ -5,4 +5,12 @@
 }
 
 <h1>@Model.Company.Name</h1>
-<strong><a href="@Model.Company.Site" target="_blank" rel="noreferrer">Website</a></strong>
+@if (Model.Company.Logo != null)
+{
+    <div>
+        <img src="~/Image/@Model.Company.Logo.Id" alt="Logo @Model.Company.Name" />
+    </div>
+}
+<div>
+    <strong><a href="@Model.Company.Site" target="_blank" rel="noreferrer">Website</a></strong>
+</div>
