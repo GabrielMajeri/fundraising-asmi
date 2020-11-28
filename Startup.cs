@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SmartBreadcrumbs.Extensions;
 
 namespace Asmi.Fundraising
 {
@@ -54,6 +55,8 @@ namespace Asmi.Fundraising
             {
                 options.Conventions.AllowAnonymousToPage("/Index");
             });
+
+            services.AddBreadcrumbs(GetType().Assembly);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)

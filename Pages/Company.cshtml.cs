@@ -3,9 +3,11 @@ using Asmi.Fundraising.Data;
 using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SmartBreadcrumbs.Attributes;
 
 namespace Asmi.Fundraising.Pages
 {
+    [Breadcrumb("ViewData.Title", FromPage = typeof(CompaniesModel))]
     public class CompanyModel : PageModel
     {
         private readonly AppDbContext context;

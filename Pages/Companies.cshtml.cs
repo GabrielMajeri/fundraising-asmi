@@ -6,9 +6,11 @@ using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Attributes;
 
 namespace Asmi.Fundraising.Pages
 {
+    [Breadcrumb("Companii")]
     public class CompaniesModel : PageModel
     {
         private readonly AppDbContext _context;
