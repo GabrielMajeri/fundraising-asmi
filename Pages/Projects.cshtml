@@ -1,0 +1,18 @@
+@page
+@model ProjectsModel
+@{
+    ViewData["Title"] = "Proiecte";
+}
+
+<h1>Proiecte</h1>
+
+@foreach (var project in Model.Projects)
+{
+    <div>
+        <h2>@project.FullName</h2>
+        @if (project.LogoId != null)
+        {
+            <img width="300" src="~/image/@project.LogoId" alt="Logo  proiect" />
+        }
+    </div>
+}
