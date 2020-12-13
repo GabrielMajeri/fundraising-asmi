@@ -14,6 +14,7 @@ namespace Asmi.Fundraising.Models
 
         [DataType(DataType.Url)]
         [Required]
+        [Url]
         public string Site { get; set; }
 
         public Image Logo { get; set; }
