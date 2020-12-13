@@ -8,18 +8,21 @@
 
 <form method="post" enctype="multipart/form-data" autocomplete="off">
     <div>
-        <label asp-for="@Model.Company.Name">Nume</label>
-        <input asp-for="@Model.Company.Name" type="text" required />
+        <label asp-for="Company.Name">Nume</label>
+        <input asp-for="Company.Name" type="text" />
+        <span asp-validation-for="Company.Name" class="text-danger"></span>
     </div>
 
     <div>
-        <label asp-for="@Model.Company.Site">Site web</label>
-        <input asp-for="@Model.Company.Site" type="url" required />
+        <label asp-for="Company.Site">Site web</label>
+        <input asp-for="Company.Site" />
+        <span asp-validation-for="Company.Site" class="text-danger"></span>
     </div>
 
     <div>
-        <label asp-for="@Model.Logo">Logo</label>
-        <input asp-for="@Model.Logo" type="file" accept="image/png, image/jpeg" />
+        <label asp-for="Logo">Logo</label>
+        <input asp-for="Logo" type="file" accept="image/png, image/jpeg" />
+        <span asp-validation-for="Logo" class="text-danger"></span>
     </div>
 
     <div>

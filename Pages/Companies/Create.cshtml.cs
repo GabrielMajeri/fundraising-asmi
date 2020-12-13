@@ -17,6 +17,7 @@ namespace Asmi.Fundraising.Pages.Companies
         [BindProperty]
         public Company Company { get; set; }
         [BindProperty]
+        [Logo]
         public IFormFile Logo { get; set; }
 
         public CreateModel(AppDbContext context, ImageUploadService imageUploadService)
@@ -29,7 +30,7 @@ namespace Asmi.Fundraising.Pages.Companies
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return Page();
             }
 
             if (Logo != null)
