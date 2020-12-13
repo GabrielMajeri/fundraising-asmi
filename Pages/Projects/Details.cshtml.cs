@@ -3,30 +3,26 @@ using Asmi.Fundraising.Data;
 using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs.Attributes;
 
-namespace Asmi.Fundraising.Pages.Companies
+namespace Asmi.Fundraising.Pages.Projects
 {
     [Breadcrumb("ViewData.Title", FromPage = typeof(IndexModel))]
     public class DetailsModel : PageModel
     {
         private readonly AppDbContext _context;
 
+        public Project Project { get; set; }
+
         public DetailsModel(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
-
-        public Company Company { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Company = await _context.Companies
-                .Include(c => c.Logo)
-                .FirstOrDefaultAsync(c => c.Id == id);
-
-            if (Company == null)
+            Project = await _context.Projects.FindAsync(id);
+            if (Project == null)
             {
                 return NotFound();
             }

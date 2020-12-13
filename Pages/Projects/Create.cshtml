@@ -1,0 +1,28 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Creează proiect";
+}
+
+<h1>Adaugă un nou proiect</h1>
+
+<form method="post" enctype="multipart/form-data" autocomplete="off">
+    <div>
+        <label asp-for="@Model.Project.Name">Nume</label>
+        <input asp-for="@Model.Project.Name" type="text" required />
+    </div>
+
+    <div>
+        <label asp-for="@Model.Project.Edition">Ediție</label>
+        <input asp-for="@Model.Project.Edition" type="text" required />
+    </div>
+
+    <div>
+        <label asp-for="@Model.Logo">Logo</label>
+        <input asp-for="@Model.Logo" type="file" accept="image/png, image/jpeg" />
+    </div>
+
+    <div>
+        <input type="submit" value="Trimite" />
+    </div>
+</form>

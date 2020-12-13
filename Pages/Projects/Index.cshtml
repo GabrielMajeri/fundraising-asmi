@@ -1,15 +1,20 @@
 @page
-@model ProjectsModel
+@model IndexModel
 @{
     ViewData["Title"] = "Proiecte";
 }
 
 <h1>Proiecte</h1>
 
+<div>
+    <a asp-page="Create">Adaugă un nou proiect</a>
+</div>
+
 @foreach (var project in Model.Projects)
 {
     <div>
         <h2>@project.FullName</h2>
+        <a asp-page="Details" asp-route-id="@project.Id">Pagina proiectului</a>
         @if (project.LogoId != null)
         {
             <img width="300" src="~/image/@project.LogoId" alt="Logo proiect" />

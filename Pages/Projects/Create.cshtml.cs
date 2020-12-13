@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SmartBreadcrumbs.Attributes;
 
-namespace Asmi.Fundraising.Pages.Companies
+namespace Asmi.Fundraising.Pages.Projects
 {
     [Breadcrumb("ViewData.Title", FromPage = typeof(IndexModel))]
     public class CreateModel : PageModel
@@ -15,7 +15,7 @@ namespace Asmi.Fundraising.Pages.Companies
         private readonly ImageUploadService _imageUploadService;
 
         [BindProperty]
-        public Company Company { get; set; }
+        public Project Project { get; set; }
         [BindProperty]
         public IFormFile Logo { get; set; }
 
@@ -34,13 +34,13 @@ namespace Asmi.Fundraising.Pages.Companies
 
             if (Logo != null)
             {
-                Company.Logo = await _imageUploadService.Upload(Logo);
+                Project.Logo = await _imageUploadService.Upload(Logo);
             }
 
-            await _context.Companies.AddAsync(Company);
+            await _context.Projects.AddAsync(Project);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("Details", new { Id = Company.Id });
+            return RedirectToPage("Details", new { Id = Project.Id });
         }
     }
 }

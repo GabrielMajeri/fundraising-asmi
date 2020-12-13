@@ -17,6 +17,7 @@ namespace Asmi.Fundraising.Models
         [Url]
         public string Site { get; set; }
 
+        public int? LogoId { get; set; }
         public Image Logo { get; set; }
     }
 }

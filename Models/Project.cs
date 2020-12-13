@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Asmi.Fundraising.Models
 {
@@ -19,6 +20,10 @@ namespace Asmi.Fundraising.Models
         [Required]
         public string Edition { get; set; }
 
+        [NotMapped]
+        public string FullName { get => $"{Name} {Edition}"; }
+
+        public int? LogoId { get; set; }
         public Image Logo { get; set; }
     }
 }
