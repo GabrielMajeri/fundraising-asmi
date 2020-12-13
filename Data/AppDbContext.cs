@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,6 +12,9 @@ namespace Asmi.Fundraising.Data
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+
         public DbSet<Project> Projects { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
@@ -48,6 +52,22 @@ namespace Asmi.Fundraising.Data
                 new Company { Name = "Adobe", Site = "https://www.adobe.com/ro/" },
                 new Company { Name = "Microsoft", Site = "https://www.microsoft.com/ro-ro" },
             };
+
+            companies[0].Contacts = new List<Contact>
+            {
+                new Contact
+                {
+                    Name = "Ion Popescu",
+                },
+            };
+            companies[1].Contacts = new List<Contact>
+            {
+                new Contact
+                {
+                    Name = "Test Xulescu",
+                }
+            };
+
             Companies.AddRange(companies);
 
             var projects = new Project[]

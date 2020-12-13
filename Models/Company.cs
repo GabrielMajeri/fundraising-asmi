@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Asmi.Fundraising.Models
@@ -19,5 +20,7 @@ namespace Asmi.Fundraising.Models
 
         public int? LogoId { get; set; }
         public Image Logo { get; set; }
+
+        public IEnumerable<Contact> Contacts { get; set; }
     }
 }

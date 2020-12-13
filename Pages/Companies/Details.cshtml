@@ -14,3 +14,12 @@
 <div>
     <strong><a href="@Model.Company.Site" target="_blank" rel="noreferrer">Website</a></strong>
 </div>
+<div>
+    <h2>Contacte</h2>
+    <ul>
+        @foreach (var contact in Model.Company.Contacts)
+        {
+            <li>@contact.Name</li>
+        }
+    </ul>
+</div>

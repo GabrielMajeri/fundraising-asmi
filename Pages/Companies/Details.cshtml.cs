@@ -23,7 +23,7 @@ namespace Asmi.Fundraising.Pages.Companies
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Company = await _context.Companies
-                .Include(c => c.Logo)
+                .Include(c => c.Contacts)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (Company == null)
