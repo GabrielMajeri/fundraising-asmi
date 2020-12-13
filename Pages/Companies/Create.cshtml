@@ -6,15 +6,20 @@
 
 <h1>Adaugă o companie nouă</h1>
 
-<form method="post" autocomplete="off">
+<form method="post" enctype="multipart/form-data" autocomplete="off">
     <div>
         <label asp-for="@Model.Company.Name">Nume</label>
-        <input asp-for="@Model.Company.Name" type="text" />
+        <input asp-for="@Model.Company.Name" type="text" required />
     </div>
 
     <div>
         <label asp-for="@Model.Company.Site">Site web</label>
-        <input asp-for="@Model.Company.Site" type="text" />
+        <input asp-for="@Model.Company.Site" type="url" required />
+    </div>
+
+    <div>
+        <label asp-for="@Model.Logo">Logo</label>
+        <input asp-for="@Model.Logo" type="file" accept="image/png, image/jpeg" />
     </div>
 
     <div>

@@ -57,6 +57,8 @@ namespace Asmi.Fundraising
             });
 
             services.AddBreadcrumbs(GetType().Assembly);
+
+            services.AddScoped<ImageUploadService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
