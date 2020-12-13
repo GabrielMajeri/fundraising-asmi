@@ -1,0 +1,23 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Creează companie";
+}
+
+<h1>Adaugă o companie nouă</h1>
+
+<form method="post" autocomplete="off">
+    <div>
+        <label asp-for="@Model.Company.Name">Nume</label>
+        <input asp-for="@Model.Company.Name" type="text" />
+    </div>
+
+    <div>
+        <label asp-for="@Model.Company.Site">Site web</label>
+        <input asp-for="@Model.Company.Site" type="text" />
+    </div>
+
+    <div>
+        <input type="submit" value="Trimite" />
+    </div>
+</form>

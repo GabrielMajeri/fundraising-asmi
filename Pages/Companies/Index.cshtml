@@ -1,0 +1,34 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Companii";
+}
+
+<h1>Companii</h1>
+
+<form id="searchForm">
+    <label asp-for="SearchQuery">Nume</label>
+    <input type="text" asp-for="SearchQuery" />
+    <input type="submit" value="Caută" />
+    @if (Model.HasSearchQuery)
+    {
+        <input type="button" onclick="resetSearchQuery(event)" value="Resetează" />
+    }
+</form>
+
+<div>
+    <a asp-page="Create">Adaugă o companie nouă</a>
+</div>
+
+<ul>
+    @foreach (var company in Model.Companies)
+    {
+        <li><a asp-page="Details" asp-route-id="@company.Id">@company.Name</a></li>
+    }
+</ul>
+
+<script>
+    function resetSearchQuery(event) {
+        window.location = window.location.href.replace(window.location.search, "");
+    }
+</script>

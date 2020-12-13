@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs.Attributes;
 
-namespace Asmi.Fundraising.Pages
+namespace Asmi.Fundraising.Pages.Companies
 {
-    [Breadcrumb("ViewData.Title", FromPage = typeof(CompaniesModel))]
-    public class CompanyModel : PageModel
+    [Breadcrumb("ViewData.Title", FromPage = typeof(IndexModel))]
+    public class DetailsModel : PageModel
     {
         private readonly AppDbContext _context;
 
-        public CompanyModel(AppDbContext context)
+        public DetailsModel(AppDbContext context)
         {
             this._context = context;
         }
@@ -29,7 +29,7 @@ namespace Asmi.Fundraising.Pages
 
             if (Company == null)
             {
-                return RedirectToPage("./Companies");
+                return NotFound();
             }
 
             return Page();

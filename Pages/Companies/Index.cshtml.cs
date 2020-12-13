@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs.Attributes;
 
-namespace Asmi.Fundraising.Pages
+namespace Asmi.Fundraising.Pages.Companies
 {
-    [Breadcrumb("Companii")]
-    public class CompaniesModel : PageModel
+    [Breadcrumb("Companii", FromPage = typeof(Pages.IndexModel))]
+    public class IndexModel : PageModel
     {
         private readonly AppDbContext _context;
 
@@ -20,7 +20,7 @@ namespace Asmi.Fundraising.Pages
         public string SearchQuery { get; set; }
         public bool HasSearchQuery { get => !string.IsNullOrEmpty(SearchQuery); }
 
-        public CompaniesModel(AppDbContext context)
+        public IndexModel(AppDbContext context)
         {
             this._context = context;
         }
