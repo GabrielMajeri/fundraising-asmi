@@ -1,0 +1,14 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Sponsorizări";
+}
+
+<h1>Sponsorizări</h1>
+
+@foreach (var sponsorship in Model.Sponsorships)
+{
+    <div>
+        <h2>Parteneriat cu @sponsorship.Company.Name pentru @sponsorship.Project.FullName</h2>
+    </div>
+}

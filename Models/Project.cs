@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,5 +26,7 @@ namespace Asmi.Fundraising.Models
 
         public int? LogoId { get; set; }
         public Image Logo { get; set; }
+
+        public IEnumerable<Sponsorship> Sponsorships { get; set; }
     }
 }

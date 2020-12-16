@@ -22,5 +22,7 @@ namespace Asmi.Fundraising.Models
         public Image Logo { get; set; }
 
         public IEnumerable<Contact> Contacts { get; set; }
+
+        public IEnumerable<Sponsorship> Sponsorships { get; set; }
     }
 }

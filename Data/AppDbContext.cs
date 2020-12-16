@@ -17,6 +17,8 @@ namespace Asmi.Fundraising.Data
 
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<Sponsorship> Sponsorships { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +36,12 @@ namespace Asmi.Fundraising.Data
             Database.EnsureDeleted();
             Database.EnsureCreated();
             SaveChanges();
+
+            var volunteers = new AppUser[]
+            {
+                new AppUser { Email = "exemplu@asmi.ro" },
+                new AppUser { Email = "cutarescu@asmi.ro" }
+            };
 
             var companies = new Company[]
             {
@@ -83,6 +91,22 @@ namespace Asmi.Fundraising.Data
                 new Project { Name = "Cariere", Edition = "2021" }
             };
             Projects.AddRange(projects);
+
+            var sponsorships = new Sponsorship[]
+            {
+                new Sponsorship
+                {
+                    Company = companies[0],
+                    Project = projects[1],
+                },
+                new Sponsorship
+                {
+                    Company = companies[2],
+                    Project = projects[0],
+                    Volunteer = volunteers[0]
+                }
+            };
+            Sponsorships.AddRange(sponsorships);
 
             SaveChanges();
         }
