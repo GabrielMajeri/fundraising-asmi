@@ -6,7 +6,7 @@ namespace Asmi.Fundraising.Data
     public class LogoAttribute : ValidationAttribute
     {
         // Maximum allowed size of an uploaded image.
-        private const long MaxFileSizeBytes = 512 * 1024;
+        public const long MaxFileSizeBytes = 512 * 1024;
 
         protected override ValidationResult IsValid(object value,
             ValidationContext validationContext)

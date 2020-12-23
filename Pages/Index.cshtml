@@ -4,9 +4,23 @@
     ViewData["Title"] = "Acasă";
 }
 
-<ul>
-    <li><a asp-page="/Companies/Index">Listă companii</a></li>
-    <li><a asp-page="/Projects/Index">Listă proiecte</a></li>
-    <li><a asp-page="/Sponsorships/Index">Listă sponsorizări</a></li>
-    <li><a asp-page="/Users">Listă utilizatori</a></li>
-</ul>
+<div class="jumbotron col-lg-10">
+    <h1 class="display-4">Fundraising</h1>
+    <p class="lead">Bine ați venit în aplicația dedicată procesului de fundraising!</p>
+    <hr class="my-4" />
+    <p class="lead d-flex flex-column flex-sm-row justify-content-sm-center">
+        <a asp-page="/Companies/Index" class="btn btn-primary btn-lg mb-3" role="button">Companii</a>
+        <a asp-page="/Projects/Index" class="btn btn-info btn-lg mb-3" role="button">Proiecte</a>
+        <a asp-page="/Sponsorships/Index" class="btn btn-success btn-lg mb-3" role="button">Sponsorizări</a>
+    </p>
+</div>
+
+<a class="btn btn-danger" asp-page="/Users">Listă utilizatori</a>
+
+<style>
+    .lead .btn-lg {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        flex: 1;
+    }
+</style>

@@ -8,11 +8,18 @@
 @if (Model.Company.Logo != null)
 {
     <div>
-        <img src="~/Image/@Model.Company.Logo.Id" alt="Logo @Model.Company.Name" />
-    </div>
+    <img src="~/Image/@Model.Company.Logo.Id" alt="Logo @Model.Company.Name" />
+</div>
 }
 <div>
     <strong><a href="@Model.Company.Site" target="_blank" rel="noreferrer">Website</a></strong>
+</div>
+<div>
+    <a class="btn btn-primary" role="button" asp-page="~/Sponsorships/Index"
+        asp-route-company-id="@Model.Company.Id">Sponsorizări</a>
+    <a class="btn btn-info" role="button" asp-page="Contacts/Index" asp-route-id="@Model.Company.Id">Contacte</a>
+    <a class="btn btn-warning" role="button">Editează</a>
+    <a class="btn btn-danger" role="button">Șterge</a>
 </div>
 <div>
     <h2>Contacte</h2>

@@ -4,31 +4,92 @@
     ViewData["Title"] = "Companii";
 }
 
-<h1>Companii</h1>
+<h1 class="display-3">Companii</h1>
 
-<form id="searchForm">
-    <label asp-for="SearchQuery">Nume</label>
-    <input type="text" asp-for="SearchQuery" />
-    <input type="submit" value="Caută" />
-    @if (Model.HasSearchQuery)
-    {
-        <input type="button" onclick="resetSearchQuery(event)" value="Resetează" />
-    }
-</form>
-
-<div>
+<div class="ml-3 mb-3">
     <a asp-page="Create">Adaugă o companie nouă</a>
 </div>
 
-<ul>
+<form id="searchForm">
+    <div class="search-bar form-group form-inline">
+        <input class="form-control" type="text" asp-for="SearchQuery" placeholder="Numele companiei" />
+        <div class="search-buttons ml-sm-3">
+            <input class="btn btn-primary" type="submit" value="Caută" />
+            @if (Model.HasSearchQuery)
+            {
+                <input class="btn btn-secondary ml-2" type="button" onclick="resetSearchQuery(event)" value="Resetează" />
+            }
+        </div>
+    </div>
+</form>
+
+<div>
     @foreach (var company in Model.Companies)
     {
-        <li><a asp-page="Details" asp-route-id="@company.Id">@company.Name</a></li>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title"><a asp-page="Details" asp-route-id="@company.Id">@company.Name</a></h2>
+            </div>
+            <div class="card-logo">
+                @if (@company.LogoId != null)
+                {
+                    <img src="~/image/@company.LogoId" alt="Logo @company.Name" />
+                }
+            </div>
+        </div>
     }
-</ul>
+</div>
 
 <script>
     function resetSearchQuery(event) {
         window.location = window.location.href.replace(window.location.search, "");
     }
 </script>
+
+<style>
+    @@media (max-width: 576px) {
+        .search-buttons {
+            display: flex;
+            margin-top: 1rem;
+            width: 100%;
+            justify-content: flex-end;
+        }
+    }
+
+    .card {
+        margin: 1rem 0;
+    }
+
+    .card-body {
+        order: 1;
+    }
+
+    .card-logo {
+        order: 0;
+
+        padding: 1rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-logo img {
+        max-width: 100%;
+    }
+
+    @@media (min-width: 768px) {
+        .card {
+            flex-direction: row;
+        }
+
+        .card-body {
+            order: 0;
+        }
+
+        .card-logo {
+            order: 1;
+            max-width: 40%;
+        }
+    }
+</style>
