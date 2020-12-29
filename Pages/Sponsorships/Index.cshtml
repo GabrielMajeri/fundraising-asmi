@@ -4,11 +4,21 @@
     ViewData["Title"] = "Sponsorizări";
 }
 
-<h1>Sponsorizări</h1>
-
-@foreach (var sponsorship in Model.Sponsorships)
+<h1>Sponsorizări
+@if(Model.Company != null)
 {
-    <div>
-        <h2>Parteneriat cu @sponsorship.Company.Name pentru @sponsorship.Project.FullName</h2>
-    </div>
+    @: cu compania @Model.Company.Name
+}
+</h1>
+
+@if(Model.Sponsorships.Count == 0)
+{
+    <strong>Nu a fost găsită nicio sponsorizare cu compania cerută.</strong>
+}
+else
+{
+    @foreach (var sponsorship in Model.Sponsorships)
+    {
+        <partial name="_Sponsorship" for="@sponsorship"/>
+    }
 }
