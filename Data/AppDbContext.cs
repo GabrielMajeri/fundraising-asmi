@@ -34,7 +34,10 @@ namespace Asmi.Fundraising.Data
         public void Seed()
         {
             Database.EnsureDeleted();
-            Database.EnsureCreated();
+            if (!Database.EnsureCreated())
+            {
+                return;
+            }
             SaveChanges();
 
             var volunteers = new AppUser[]
@@ -42,6 +45,7 @@ namespace Asmi.Fundraising.Data
                 new AppUser { Email = "exemplu@asmi.ro" },
                 new AppUser { Email = "cutarescu@asmi.ro" }
             };
+            Users.AddRange(volunteers);
 
             var companies = new Company[]
             {
@@ -98,11 +102,13 @@ namespace Asmi.Fundraising.Data
                 {
                     Company = companies[0],
                     Project = projects[1],
+                    SigningDate = DateTime.Today
                 },
                 new Sponsorship
                 {
                     Company = companies[2],
                     Project = projects[0],
+                    SigningDate = DateTime.Today.AddDays(-7),
                     Volunteer = volunteers[0]
                 }
             };

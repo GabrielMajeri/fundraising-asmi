@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Asmi.Fundraising.Models
@@ -18,6 +19,17 @@ namespace Asmi.Fundraising.Models
         [Required]
         public Project Project { get; set; }
 
+        /// <summary>
+        /// The day on which this sponsorship's contract was signed.
+        /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime SigningDate { get; set; }
+
+        /// <summary>
+        /// The volunteer responsible for this sponsorship.
+        /// </summary>
         public AppUser Volunteer { get; set; }
     }
 }
