@@ -11,14 +11,17 @@ namespace Asmi.Fundraising.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Nume", Prompt = "Numele companiei")]
         public string Name { get; set; }
 
         [DataType(DataType.Url)]
         [Required]
         [Url]
+        [Display(Name = "Site web", Prompt = "https://www.example.com")]
         public string Site { get; set; }
 
         public int? LogoId { get; set; }
+        [Display(Name = "Logo")]
         public Image Logo { get; set; }
 
         public IEnumerable<Contact> Contacts { get; set; }

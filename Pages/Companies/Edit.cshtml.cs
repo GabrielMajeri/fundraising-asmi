@@ -9,21 +9,36 @@ using SmartBreadcrumbs.Attributes;
 namespace Asmi.Fundraising.Pages.Companies
 {
     [Breadcrumb("ViewData.Title", FromPage = typeof(IndexModel))]
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly AppDbContext _context;
         private readonly ImageUploadService _imageUploadService;
 
+        public EditModel(AppDbContext context, ImageUploadService imageUploadService)
+        {
+            this._context = context;
+            this._imageUploadService = imageUploadService;
+        }
+
+        [BindProperty(SupportsGet = true)]
+        public int? Id { get; set; }
         [BindProperty]
         public Company Company { get; set; }
         [BindProperty]
         [Logo]
         public IFormFile Logo { get; set; }
 
-        public CreateModel(AppDbContext context, ImageUploadService imageUploadService)
+        public async Task<IActionResult> OnGetAsync()
         {
-            this._context = context;
-            this._imageUploadService = imageUploadService;
+            if (Id.HasValue)
+            {
+                Company = await _context.Companies.FindAsync(Id.Value);
+                if (Company == null)
+                {
+                    return NotFound();
+                }
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -33,12 +48,17 @@ namespace Asmi.Fundraising.Pages.Companies
                 return Page();
             }
 
+            if (Id.HasValue)
+            {
+                Company.Id = Id.Value;
+            }
+
             if (Logo != null)
             {
                 Company.Logo = await _imageUploadService.Upload(Logo);
             }
 
-            await _context.Companies.AddAsync(Company);
+            _context.Companies.Update(Company);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Details", new { Id = Company.Id });
