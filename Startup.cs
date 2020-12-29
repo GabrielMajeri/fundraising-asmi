@@ -58,11 +58,15 @@ namespace Asmi.Fundraising
 
             services.AddBreadcrumbs(GetType().Assembly);
 
+            services.AddTransient<SeedUserRoles>();
+
             services.AddScoped<ImageUploadService>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context, SeedUserRoles seedUserRoles)
         {
+            seedUserRoles.Seed();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
