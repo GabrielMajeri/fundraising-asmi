@@ -70,13 +70,21 @@ namespace Asmi.Fundraising.Data
                 new Contact
                 {
                     Name = "Ion Popescu",
+                    Email = "ion.popescu@example.com"
                 },
+                new Contact
+                {
+                    Name = "Ioana Exemplu",
+                    Email = "ioana@example.org",
+                    Telephone = "0123456780"
+                }
             };
             companies[1].Contacts = new List<Contact>
             {
                 new Contact
                 {
                     Name = "Test Xulescu",
+                    Telephone = "0700111222"
                 }
             };
 

@@ -12,26 +12,38 @@
 <div>
     <strong><a href="@Model.Company.Site" target="_blank" rel="noreferrer" class="btn btn-link">Website</a></strong>
 </div>
+
 <div>
-    <a class="btn btn-primary" role="button" asp-page="/Sponsorships/Index"
-        asp-route-CompanyId="@Model.Company.Id">Sponsorizări</a>
-    <a asp-page="Edit" asp-route-id="@Model.Company.Id" class="btn btn-warning" role="button">Editează</a>
-    <a asp-page-handler="Delete" class="btn btn-danger" role="button">Șterge</a>
+    <a class="btn btn-primary" role="button" asp-page="/Sponsorships/Index" asp-route-CompanyId="@Model.Company.Id">
+        Sponsorizări
+    </a>
+    <a asp-page="Edit" asp-route-id="@Model.Company.Id" class="btn btn-warning" role="button">
+        Editează
+    </a>
+    <a asp-page="Delete" asp-route-id="@Model.Company.Id" class="btn btn-danger" role="button">
+        Șterge
+    </a>
 </div>
+
 <div>
-    <h2>Contacte</h2>
+    <h2 class="mt-3">Contacte</h2>
+    <p>
+        <a asp-page="Contacts/Edit" asp-route-CompanyId="@Model.Company.Id" class="btn btn-primary" role="button">
+            Adaugă o persoană de contact
+        </a>
+    </p>
     @if (!Model.Company.Contacts.Any())
     {
         <strong>Nu există contacte la această companie.</strong>
     }
     else
     {
-        <ul>
+        <div class="list-group">
             @foreach (var contact in Model.Company.Contacts)
             {
-                <li>@contact.Name</li>
+                <partial name="_Contact" for="@contact" />
             }
-        </ul>
+        </div>
     }
 </div>
 

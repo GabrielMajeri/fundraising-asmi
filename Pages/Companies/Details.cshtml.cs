@@ -34,19 +34,5 @@ namespace Asmi.Fundraising.Pages.Companies
 
             return Page();
         }
-
-        public async Task<IActionResult> OnGetDelete(int id)
-        {
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null)
-            {
-                return NotFound();
-            }
-
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPagePermanent("Index");
-        }
     }
 }

@@ -1,0 +1,29 @@
+@model Models.Contact
+
+<div class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-3">@Model.Name</h5>
+        <div>
+            <a asp-page="Contacts/Edit" asp-route-Id="@Model.Id" class="btn btn-warning" role="button">
+                Editează
+            </a>
+            <a asp-page="Contacts/Delete" asp-route-Id="@Model.Id" class="btn btn-danger" role="button">
+                Șterge
+            </a>
+        </div>
+    </div>
+    @if (Model.Email != null)
+    {
+        <p class="mb-1">
+            <strong>Email:</strong>
+            <a href="mailto:@Model.Email" target="_blank" rel="noreferer">@Model.Email</a>
+        </p>
+    }
+    @if (Model.Telephone != null)
+    {
+        <p>
+            <strong>Telefon:</strong>
+            <a href="tel:@Model.Telephone" target="_blank" rel="noreferer">@Model.Telephone</a>
+        </p>
+    }
+</div>
