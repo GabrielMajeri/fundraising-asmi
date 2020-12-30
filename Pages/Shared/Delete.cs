@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Asmi.Fundraising.Data;
+using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -22,6 +23,16 @@ namespace Asmi.Fundraising.Pages
             if (entity == null)
             {
                 return NotFound();
+            }
+
+            var branded = entity as BrandedEntity;
+            if (branded != null)
+            {
+                await _context.Entry(branded).Reference(b => b.Logo).LoadAsync();
+                if (branded.Logo != null)
+                {
+                    _context.Remove(branded.Logo);
+                }
             }
 
             set.Remove(entity);

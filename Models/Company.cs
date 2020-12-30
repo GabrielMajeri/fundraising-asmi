@@ -6,7 +6,7 @@ namespace Asmi.Fundraising.Models
     /// <summary>
     /// A company is a legal person we interact with during the fundraising process.
     /// </summary>
-    public class Company
+    public class Company : BrandedEntity
     {
         public int Id { get; set; }
 
@@ -19,9 +19,6 @@ namespace Asmi.Fundraising.Models
         [Url]
         [Display(Name = "Site web", Prompt = "https://www.example.com")]
         public string Site { get; set; }
-
-        public int? LogoId { get; set; }
-        public Image Logo { get; set; }
 
         public IEnumerable<Contact> Contacts { get; set; }
 

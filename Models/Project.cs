@@ -11,7 +11,7 @@ namespace Asmi.Fundraising.Models
     /// Every project is led by one or more project managers, who are
     /// responsible for defining the project's vision and delegating its
     /// implementation to volunteers.
-    public class Project
+    public class Project : BrandedEntity
     {
         public int Id { get; set; }
 
@@ -25,9 +25,6 @@ namespace Asmi.Fundraising.Models
 
         [NotMapped]
         public string FullName { get => $"{Name} {Edition}"; }
-
-        public int? LogoId { get; set; }
-        public Image Logo { get; set; }
 
         public IEnumerable<Sponsorship> Sponsorships { get; set; }
     }

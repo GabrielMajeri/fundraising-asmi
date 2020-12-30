@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Asmi.Fundraising.Data;
 using Asmi.Fundraising.Models;
@@ -48,9 +49,14 @@ namespace Asmi.Fundraising.Pages.Companies
                 return Page();
             }
 
+            Image oldLogo = null;
             if (Id.HasValue)
             {
                 Company.Id = Id.Value;
+                var logoQuery = from c in _context.Companies
+                                where c.Id == Company.Id
+                                select c.Logo;
+                oldLogo = logoQuery.FirstOrDefault();
             }
 
             if (Logo != null)
@@ -58,8 +64,14 @@ namespace Asmi.Fundraising.Pages.Companies
                 Company.Logo = await _imageUploadService.Upload(Logo);
             }
 
-            _context.Companies.Update(Company);
+            _context.Update(Company);
             await _context.SaveChangesAsync();
+
+            if (oldLogo != null)
+            {
+                _context.Remove(oldLogo);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToPage("Details", new { Id = Company.Id });
         }
