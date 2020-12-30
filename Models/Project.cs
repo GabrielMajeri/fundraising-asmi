@@ -16,9 +16,11 @@ namespace Asmi.Fundraising.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Nume")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Ediție")]
         public string Edition { get; set; }
 
         [NotMapped]

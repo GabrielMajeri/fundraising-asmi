@@ -16,9 +16,14 @@ namespace Asmi.Fundraising.Pages.Sponsorships
         private readonly AppDbContext _context;
 
         public List<Sponsorship> Sponsorships { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public int? CompanyId { get; set; }
         public Company Company { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? ProjectId { get; set; }
+        public Project Project { get; set; }
 
         public IndexModel(AppDbContext context)
         {
@@ -43,6 +48,18 @@ namespace Asmi.Fundraising.Pages.Sponsorships
                 }
 
                 query = query.Where(s => s.Company.Id == CompanyId);
+            }
+
+            // Filter sponsorships by project
+            if (ProjectId.HasValue)
+            {
+                Project = await _context.Projects.FindAsync(ProjectId.Value);
+                if (Project == null)
+                {
+                    return NotFound();
+                }
+
+                query = query.Where(s => s.Project.Id == ProjectId);
             }
 
             query = query.OrderByDescending(s => s.SigningDate);

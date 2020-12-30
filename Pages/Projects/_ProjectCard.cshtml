@@ -3,6 +3,15 @@
 <div class="card">
     <div class="card-body">
         <h2 class="card-title">@Model.FullName</h2>
+        <a class="btn btn-primary" role="button" asp-page="/Sponsorships/Index" asp-route-ProjectId="@Model.Id">
+            Sponsorizări
+        </a>
+        <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-warning" role="button">
+            Editează
+        </a>
+        <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger" role="button">
+            Șterge
+        </a>
     </div>
     <div class="card-logo">
         @if (Model.LogoId != null)

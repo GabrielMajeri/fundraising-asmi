@@ -9,11 +9,15 @@
 {
     @: cu compania @Model.Company.Name
 }
+@if(Model.Project != null)
+{
+    @: pentru proiectul @Model.Project.Name
+}
 </h1>
 
 @if(Model.Sponsorships.Count == 0)
 {
-    <strong>Nu a fost găsită nicio sponsorizare cu compania cerută.</strong>
+    <strong>Nu a fost găsită nicio sponsorizare cu criteriile date.</strong>
 }
 else
 {

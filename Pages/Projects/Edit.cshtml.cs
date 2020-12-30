@@ -9,21 +9,39 @@ using SmartBreadcrumbs.Attributes;
 namespace Asmi.Fundraising.Pages.Projects
 {
     [Breadcrumb("ViewData.Title", FromPage = typeof(IndexModel))]
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly AppDbContext _context;
         private readonly ImageUploadService _imageUploadService;
 
+        [BindProperty(SupportsGet = true)]
+        public int? Id { get; set; }
         [BindProperty]
         public Project Project { get; set; }
         [BindProperty]
         [Logo]
         public IFormFile Logo { get; set; }
 
-        public CreateModel(AppDbContext context, ImageUploadService imageUploadService)
+        public EditModel(AppDbContext context, ImageUploadService imageUploadService)
         {
             this._context = context;
             this._imageUploadService = imageUploadService;
+        }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            // If editing a project
+            if (Id.HasValue)
+            {
+                // Load the existing data
+                Project = await _context.Projects.FindAsync(Id.Value);
+                if (Project == null)
+                {
+                    return NotFound();
+                }
+            }
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -33,15 +51,20 @@ namespace Asmi.Fundraising.Pages.Projects
                 return Page();
             }
 
+            if (Id.HasValue)
+            {
+                Project.Id = Id.Value;
+            }
+
             if (Logo != null)
             {
                 Project.Logo = await _imageUploadService.Upload(Logo);
             }
 
-            await _context.Projects.AddAsync(Project);
+            _context.Update(Project);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("Details", new { Id = Project.Id });
+            return RedirectToPage("Index");
         }
     }
 }
