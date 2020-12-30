@@ -1,0 +1,13 @@
+@model Models.Project
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">@Model.FullName</h2>
+    </div>
+    <div class="card-logo">
+        @if (Model.LogoId != null)
+        {
+            <img src="~/image/@Model.LogoId" alt="Logo @Model.Name" />
+        }
+    </div>
+</div>

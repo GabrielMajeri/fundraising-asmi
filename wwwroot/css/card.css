@@ -1,0 +1,36 @@
+.card {
+  margin: 1rem 0;
+}
+
+.card-body {
+  order: 1;
+}
+
+.card-logo {
+  order: 0;
+
+  padding: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-logo img {
+  max-width: 100%;
+}
+
+@@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
+
+  .card-body {
+    order: 0;
+  }
+
+  .card-logo {
+    order: 1;
+    max-width: 40%;
+  }
+}

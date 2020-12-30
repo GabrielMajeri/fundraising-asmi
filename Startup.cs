@@ -82,6 +82,8 @@ namespace Asmi.Fundraising
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthentication();

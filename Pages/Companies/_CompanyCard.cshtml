@@ -1,0 +1,13 @@
+@model Models.Company
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title"><a asp-page="Details" asp-route-id="@Model.Id">@Model.Name</a></h2>
+    </div>
+    <div class="card-logo">
+        @if (Model.LogoId != null)
+        {
+            <img src="~/image/@Model.LogoId" alt="Logo @Model.Name" />
+        }
+    </div>
+</div>

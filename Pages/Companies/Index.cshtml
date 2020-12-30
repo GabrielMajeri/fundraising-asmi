@@ -4,6 +4,21 @@
     ViewData["Title"] = "Companii";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/card.css"/>
+
+    <style>
+        @@media (max-width: 576px) {
+            .search-buttons {
+                display: flex;
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+}
+
 <h1 class="display-3">Companii</h1>
 
 <div class="ml-3 mb-3">
@@ -26,17 +41,7 @@
 <div>
     @foreach (var company in Model.Companies)
     {
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title"><a asp-page="Details" asp-route-id="@company.Id">@company.Name</a></h2>
-            </div>
-            <div class="card-logo">
-                @if (@company.LogoId != null)
-                {
-                    <img src="~/image/@company.LogoId" alt="Logo @company.Name" />
-                }
-            </div>
-        </div>
+        <partial name="_CompanyCard" for="@company" />
     }
 </div>
 
@@ -45,51 +50,3 @@
         window.location = window.location.href.replace(window.location.search, "");
     }
 </script>
-
-<style>
-    @@media (max-width: 576px) {
-        .search-buttons {
-            display: flex;
-            margin-top: 1rem;
-            width: 100%;
-            justify-content: flex-end;
-        }
-    }
-
-    .card {
-        margin: 1rem 0;
-    }
-
-    .card-body {
-        order: 1;
-    }
-
-    .card-logo {
-        order: 0;
-
-        padding: 1rem;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .card-logo img {
-        max-width: 100%;
-    }
-
-    @@media (min-width: 768px) {
-        .card {
-            flex-direction: row;
-        }
-
-        .card-body {
-            order: 0;
-        }
-
-        .card-logo {
-            order: 1;
-            max-width: 40%;
-        }
-    }
-</style>
