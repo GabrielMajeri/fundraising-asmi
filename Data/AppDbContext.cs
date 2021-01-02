@@ -42,8 +42,8 @@ namespace Asmi.Fundraising.Data
 
             var volunteers = new AppUser[]
             {
-                new AppUser { Email = "exemplu@asmi.ro" },
-                new AppUser { Email = "cutarescu@asmi.ro" }
+                new AppUser { Email = "exemplu@asmi.ro", FullName = "Exemplu Popescu" },
+                new AppUser { Email = "cutarescu@asmi.ro", FullName = "Test Cutărescu" }
             };
             Users.AddRange(volunteers);
 

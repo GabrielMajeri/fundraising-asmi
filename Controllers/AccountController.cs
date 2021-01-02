@@ -55,10 +55,13 @@ namespace Asmi.Fundraising.Controllers
             }
 
             // Otherwise, create a new user
+            var email = info.Principal.FindFirst(ClaimTypes.Email).Value;
+            var fullName = info.Principal.FindFirst(ClaimTypes.Name).Value;
             var user = new AppUser
             {
-                Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
+                Email = email,
+                UserName = email,
+                FullName = fullName,
             };
 
             var identResult = await _userManager.CreateAsync(user);
