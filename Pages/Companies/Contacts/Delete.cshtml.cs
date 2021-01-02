@@ -14,7 +14,7 @@ namespace Asmi.Fundraising.Pages.Companies.Contacts
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);
             if (contact == null)
