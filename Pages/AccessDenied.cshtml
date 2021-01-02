@@ -1,0 +1,11 @@
+@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Acces interzis";
+}
+
+<h1>Acces interzis</h1>
+
+<p>Nu aveți voie să accesați pagina <code>@Model.ReturnUrl</code>.</p>
+
+<a asp-page="/Index">Înapoi la pagina principală</a>

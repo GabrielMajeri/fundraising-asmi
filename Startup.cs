@@ -54,6 +54,7 @@ namespace Asmi.Fundraising
             services.AddRazorPages(options =>
             {
                 options.Conventions.AllowAnonymousToPage("/Index");
+                options.Conventions.AllowAnonymousToPage("/AccessDenied");
             });
 
             services.AddBreadcrumbs(GetType().Assembly);

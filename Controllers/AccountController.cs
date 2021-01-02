@@ -26,6 +26,12 @@ namespace Asmi.Fundraising.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet("AccessDenied")]
+        public IActionResult AccessDenied(string returnUrl = "/")
+        {
+            return RedirectToPage("/AccessDenied", new { ReturnUrl = returnUrl });
+        }
+
         [HttpGet("Login")]
         public IActionResult Login(string returnUrl = "/")
         {
