@@ -2,12 +2,16 @@
 
 <div class="card">
     <div class="card-body">
-        <h2 class="card-title"><a asp-page="Details" asp-route-id="@Model.Id">@Model.Name</a></h2>
+        <h2 class="card-title">
+            <a asp-page="Details" asp-route-id="@Model.Id" class="stretched-link">
+                @Model.Name
+            </a>
+        </h2>
     </div>
-    <div class="card-logo">
-        @if (Model.LogoId != null)
-        {
+    @if (Model.LogoId != null)
+    {
+        <div class="card-logo">
             <img src="~/image/@Model.LogoId" alt="Logo @Model.Name" />
-        }
-    </div>
+        </div>
+    }
 </div>

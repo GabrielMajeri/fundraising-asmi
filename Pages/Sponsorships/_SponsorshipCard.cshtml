@@ -13,15 +13,17 @@
                 </a>
             </div>
         </div>
-        <p>Semnat pe data de <strong>@Html.DisplayFor(s => s.SigningDate)</strong></p>
-        @if (Model.Volunteer != null)
-        {
-            <p>
-                <strong>Responsabil:</strong>
-                <a asp-page="/Users/Details" asp-route-id="@Model.Volunteer.Id">
-                    @Model.Volunteer.FullName
-                </a>
-            </p>
-        }
+        <div class="mt-3">
+            <p>Semnat pe data de <strong>@Html.DisplayFor(s => s.SigningDate)</strong></p>
+            @if (Model.Volunteer != null)
+            {
+                <p>
+                    <strong>Responsabil:</strong>
+                    <a asp-page="/Users/Details" asp-route-id="@Model.Volunteer.Id">
+                        @Model.Volunteer.FullName
+                    </a>
+                </p>
+            }
+        </div>
     </div>
 </div>
