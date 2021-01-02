@@ -10,7 +10,7 @@
     @foreach (var user in Model.Users)
     {
         <li>
-            @user.FullName -
+            <a asp-page="Details" asp-route-id="@user.Id">@user.FullName</a> -
             <partial name="_EmailLink" for="@user.Email" />
         </li>
     }

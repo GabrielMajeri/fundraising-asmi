@@ -4,6 +4,16 @@
     ViewData["Title"] = "Acasă";
 }
 
+@section Styles {
+    <style>
+        .lead .btn-lg {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            flex: 1;
+        }
+    </style>
+}
+
 <div class="jumbotron col-lg-10">
     <h1 class="display-4">Fundraising</h1>
     <p class="lead">Bine ați venit în aplicația dedicată procesului de fundraising!</p>
@@ -15,12 +25,12 @@
     </p>
 </div>
 
-<a class="btn btn-danger" asp-page="/Users/Index">Listă utilizatori</a>
-
-<style>
-    .lead .btn-lg {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-        flex: 1;
-    }
-</style>
+@if (Model.UserIsAdmin)
+{
+    <section>
+    <h2>Administrare</h2>
+    <a asp-page="/Users/Index" class="btn btn-danger ml-3" role="button">
+        Listă utilizatori
+    </a>
+</section>
+}

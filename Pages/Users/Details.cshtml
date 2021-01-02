@@ -10,3 +10,16 @@
     <strong>Email:</strong>
     <partial name="_EmailLink" for="@Model.AppUser.Email" />
 </p>
+
+@if (Model.AppUserIsAdmin)
+{
+    <p>
+    <strong>Este administrator</strong>
+    @if (Model.UserIsAdmin)
+        {
+        <form method="POST" asp-page-handler="RemoveRole">
+    <input type="submit" class="btn btn-danger" value="Elimină rolul de administrator" />
+</form>
+        }
+    </p>
+}

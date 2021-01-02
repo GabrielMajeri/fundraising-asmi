@@ -28,7 +28,7 @@ namespace Asmi.Fundraising
             var connectionString = Configuration.GetConnectionString("FundraisingDB");
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
-            services.AddIdentity<AppUser, IdentityRole>()
+            services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddAuthentication()
@@ -60,18 +60,23 @@ namespace Asmi.Fundraising
             services.AddBreadcrumbs(GetType().Assembly);
 
             services.AddTransient<SeedUserRoles>();
+            services.AddTransient<SeedData>();
 
             services.AddScoped<ImageUploadService>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context, SeedUserRoles seedUserRoles)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            AppDbContext context, SeedUserRoles seedUserRoles, SeedData seedData)
         {
-            seedUserRoles.Seed();
+            if (context.Database.EnsureCreated())
+            {
+                seedUserRoles.Seed();
+                seedData.Seed();
+            }
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                context.Seed();
             }
             else
             {

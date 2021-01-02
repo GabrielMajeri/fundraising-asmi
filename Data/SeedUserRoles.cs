@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Asmi.Fundraising.Data
 {
-    using RoleManager = RoleManager<IdentityRole>;
+    using RoleManager = RoleManager<AppRole>;
     using UserManager = UserManager<AppUser>;
 
     public class SeedUserRoles
@@ -26,7 +26,7 @@ namespace Asmi.Fundraising.Data
 
         public async Task SeedAsync()
         {
-            await EnsureRoleExists("Administrator");
+            await EnsureRoleExists(AppRole.Admin);
         }
 
         private async Task EnsureRoleExists(string name)
@@ -36,7 +36,7 @@ namespace Asmi.Fundraising.Data
                 return;
             }
 
-            var role = new IdentityRole { Name = name };
+            var role = new AppRole { Name = name };
             var result = await _roleManager.CreateAsync(role);
 
             if (!result.Succeeded)
