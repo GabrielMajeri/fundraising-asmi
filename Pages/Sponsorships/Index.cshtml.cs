@@ -10,7 +10,7 @@ using SmartBreadcrumbs.Attributes;
 
 namespace Asmi.Fundraising.Pages.Sponsorships
 {
-    [Breadcrumb("ViewData.Title", FromPage = typeof(Pages.IndexModel))]
+    [Breadcrumb("Sponsorizări", FromPage = typeof(Pages.IndexModel))]
     public class IndexModel : PageModel
     {
         private readonly AppDbContext _context;
@@ -35,7 +35,8 @@ namespace Asmi.Fundraising.Pages.Sponsorships
             IQueryable<Sponsorship> query = _context.Sponsorships
                 .AsNoTracking()
                 .Include(s => s.Company)
-                .Include(s => s.Project);
+                .Include(s => s.Project)
+                .Include(s => s.Volunteer);
 
             // Filter sponsorships by company
             if (CompanyId.HasValue)

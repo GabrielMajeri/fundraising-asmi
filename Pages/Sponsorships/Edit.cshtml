@@ -1,0 +1,49 @@
+@page "{id:int?}"
+@model EditModel
+
+@if (Model.Id == null)
+{
+    ViewData["Title"] = "Înregistrează sponsorizare";
+    <h1>Adaugă o sponsorizare nouă</h1>
+}
+else
+{
+    ViewData["Title"] = "Editează sponsorizare";
+    <h1>Editează o sponsorizare existentă</h1>
+}
+
+<form method="post" autocomplete="off">
+    <div class="form-group">
+        <label asp-for="CompanyId"></label>
+        <select asp-for="CompanyId" asp-items="@Model.Companies" class="form-control">
+            <option>Selectează o companie</option>
+        </select>
+        <span asp-validation-for="CompanyId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProjectId"></label>
+        <select asp-for="ProjectId" asp-items="@Model.Projects" class="form-control">
+            <option>Selectează un proiect</option>
+        </select>
+        <span asp-validation-for="ProjectId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SigningDate"></label>
+        <input asp-for="SigningDate" type="date" class="form-control" />
+        <span asp-validation-for="SigningDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VolunteerId"></label>
+        <select asp-for="VolunteerId" asp-items="@Model.Volunteers" class="form-control">
+            <option value="@null">Selectează un voluntar</option>
+        </select>
+        <span asp-validation-for="VolunteerId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input class="btn btn-primary" type="submit" value="Trimite" />
+    </div>
+</form>

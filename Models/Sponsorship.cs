@@ -13,9 +13,11 @@ namespace Asmi.Fundraising.Models
     {
         public int Id { get; set; }
 
+        public int CompanyId { get; set; }
         [Required]
         public Company Company { get; set; }
 
+        public int ProjectId { get; set; }
         [Required]
         public Project Project { get; set; }
 
@@ -24,9 +26,10 @@ namespace Asmi.Fundraising.Models
         /// </summary>
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime SigningDate { get; set; }
 
+        public string VolunteerId { get; set; }
         /// <summary>
         /// The volunteer responsible for this sponsorship.
         /// </summary>

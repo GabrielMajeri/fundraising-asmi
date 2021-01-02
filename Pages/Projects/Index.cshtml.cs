@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Asmi.Fundraising.Pages.Projects
 {
-    [Breadcrumb("Proiecte")]
+    [Breadcrumb("Proiecte", FromPage = typeof(Pages.IndexModel))]
     public class IndexModel : PageModel
     {
         private readonly AppDbContext _context;

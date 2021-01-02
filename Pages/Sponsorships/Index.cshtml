@@ -15,6 +15,8 @@
 }
 </h1>
 
+<a asp-page="Edit" class="btn btn-link" role="button">Adaugă o sponsorizare nouă</a>
+
 @if(Model.Sponsorships.Count == 0)
 {
     <strong>Nu a fost găsită nicio sponsorizare cu criteriile date.</strong>
@@ -23,6 +25,6 @@ else
 {
     @foreach (var sponsorship in Model.Sponsorships)
     {
-        <partial name="_Sponsorship" for="@sponsorship"/>
+        <partial name="_SponsorshipCard" for="@sponsorship"/>
     }
 }
