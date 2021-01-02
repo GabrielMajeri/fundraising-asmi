@@ -1,0 +1,17 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Utilizatori";
+}
+
+<h1>Utilizatori</h1>
+
+<ul>
+    @foreach (var user in Model.Users)
+    {
+        <li>
+            @user.FullName -
+            <partial name="_EmailLink" for="@user.Email" />
+        </li>
+    }
+</ul>
