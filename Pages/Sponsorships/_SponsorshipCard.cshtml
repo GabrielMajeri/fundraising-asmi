@@ -1,16 +1,27 @@
 @model Models.Sponsorship
 
-<div>
-    <h2>Parteneriat cu @Model.Company.Name pentru @Model.Project.FullName</h2>
-    <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-warning" role="button">
-        Editează
-    </a>
-    <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger" role="button">
-        Șterge
-    </a>
-    <p>Semnat pe data de @Html.DisplayFor(s => s.SigningDate)</p>
-    @if (Model.Volunteer != null)
-    {
-        <p>Responsabil: @Model.Volunteer.FullName</p>
-    }
+<div class="card">
+    <div class="card-body">
+        <div class="d-lg-flex w-100 justify-content-between">
+            <h3>Parteneriat cu @Model.Company.Name pentru @Model.Project.FullName</h3>
+            <div>
+                <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-warning" role="button">
+                    Editează
+                </a>
+                <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger" role="button">
+                    Șterge
+                </a>
+            </div>
+        </div>
+        <p>Semnat pe data de <strong>@Html.DisplayFor(s => s.SigningDate)</strong></p>
+        @if (Model.Volunteer != null)
+        {
+            <p>
+                <strong>Responsabil:</strong>
+                <a asp-page="/Users/Details" asp-route-id="@Model.Volunteer.Id">
+                    @Model.Volunteer.FullName
+                </a>
+            </p>
+        }
+    </div>
 </div>

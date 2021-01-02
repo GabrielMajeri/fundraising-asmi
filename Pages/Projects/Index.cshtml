@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="~/css/card.css"/>
 }
 
-<h1>Proiecte</h1>
+<h1 class="display-3">Proiecte</h1>
 
-<a asp-page="Edit" class="btn btn-link" role="button">Adaugă un nou proiect</a>
+<p>
+    <a asp-page="Edit" class="btn btn-link" role="button">Adaugă un nou proiect</a>
+</p>
 
 <div>
     @foreach (var project in Model.Projects)

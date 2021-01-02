@@ -3,3 +3,10 @@
 @{
     ViewData["Title"] = Model.AppUser.FullName;
 }
+
+<h1 class="display-4">@Model.AppUser.FullName</h1>
+
+<p>
+    <strong>Email:</strong>
+    <partial name="_EmailLink" for="@Model.AppUser.Email" />
+</p>

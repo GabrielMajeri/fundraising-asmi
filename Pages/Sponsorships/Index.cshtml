@@ -4,27 +4,36 @@
     ViewData["Title"] = "Sponsorizări";
 }
 
-<h1>Sponsorizări
-@if(Model.Company != null)
-{
-    @: cu compania @Model.Company.Name
+@section Styles {
+    <link rel="stylesheet" href="~/css/card.css"/>
 }
-@if(Model.Project != null)
-{
-    @: pentru proiectul @Model.Project.Name
-}
-</h1>
 
-<a asp-page="Edit" class="btn btn-link" role="button">Adaugă o sponsorizare nouă</a>
-
-@if(Model.Sponsorships.Count == 0)
-{
-    <strong>Nu a fost găsită nicio sponsorizare cu criteriile date.</strong>
-}
-else
-{
-    @foreach (var sponsorship in Model.Sponsorships)
+<h1 class="display-4">Sponsorizări</h1>
+<h2>
+    @if(Model.Company != null)
     {
-        <partial name="_SponsorshipCard" for="@sponsorship"/>
+        @: cu compania @Model.Company.Name
     }
-}
+    @if(Model.Project != null)
+    {
+        @: pentru proiectul @Model.Project.FullName
+    }
+</h2>
+
+<p>
+    <a asp-page="Edit" class="btn btn-link" role="button">Adaugă o sponsorizare nouă</a>
+</p>
+
+<div>
+    @if(Model.Sponsorships.Count == 0)
+    {
+        <strong>Nu a fost găsită nicio sponsorizare cu criteriile date.</strong>
+    }
+    else
+    {
+        @foreach (var sponsorship in Model.Sponsorships)
+        {
+            <partial name="_SponsorshipCard" for="@sponsorship"/>
+        }
+    }
+</div>
