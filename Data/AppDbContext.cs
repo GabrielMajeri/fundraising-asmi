@@ -62,7 +62,12 @@ namespace Asmi.Fundraising.Data
                     Logo = LoadLogo("accenture.png")
                 },
                 new Company { Name = "Adobe", Site = "https://www.adobe.com/ro/" },
-                new Company { Name = "Microsoft", Site = "https://www.microsoft.com/ro-ro" },
+                new Company
+                {
+                    Name = "Microsoft",
+                    Site = "https://www.microsoft.com/ro-ro",
+                    Logo = LoadLogo("microsoft.png")
+                },
             };
 
             companies[0].Contacts = new List<Contact>
