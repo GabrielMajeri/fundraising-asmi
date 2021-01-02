@@ -16,7 +16,7 @@
     {
         <p class="mb-1">
             <strong>Email:</strong>
-            <a href="mailto:@Model.Email" target="_blank" rel="noreferer">@Model.Email</a>
+            <partial name="_EmailLink" for="@Model.Email" />
         </p>
     }
     @if (Model.Telephone != null)
