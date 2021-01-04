@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Asmi.Fundraising.Models;
 
 namespace Asmi.Fundraising.Data
@@ -17,12 +18,7 @@ namespace Asmi.Fundraising.Data
         /// Initializes the database with mock data.
         public void Seed()
         {
-            var volunteers = new AppUser[]
-            {
-                new AppUser { Email = "exemplu@asmi.ro", FullName = "Exemplu Popescu" },
-                new AppUser { Email = "cutarescu@asmi.ro", FullName = "Test Cutărescu" }
-            };
-            _context.Users.AddRange(volunteers);
+            var volunteers = _context.Users.ToList();
 
             var companies = new Company[]
             {

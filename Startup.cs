@@ -5,7 +5,6 @@ using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,6 +53,8 @@ namespace Asmi.Fundraising
             services.AddRazorPages(options =>
             {
                 options.Conventions.AllowAnonymousToPage("/Index");
+                options.Conventions.AllowAnonymousToPage("/Register");
+                options.Conventions.AllowAnonymousToPage("/Login");
                 options.Conventions.AllowAnonymousToPage("/AccessDenied");
             });
 
@@ -68,10 +69,20 @@ namespace Asmi.Fundraising
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             AppDbContext context, SeedUserRoles seedUserRoles, SeedData seedData)
         {
-            if (context.Database.EnsureCreated())
+            try
             {
-                seedUserRoles.Seed();
-                seedData.Seed();
+                // Try to create the database
+                if (context.Database.EnsureCreated())
+                {
+                    // Run the initial data seeding
+                    seedUserRoles.Seed();
+                    seedData.Seed();
+                }
+            }
+            catch
+            {
+                // Clean up database if seeding fails
+                context.Database.EnsureDeleted();
             }
 
             if (env.IsDevelopment())

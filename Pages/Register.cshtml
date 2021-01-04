@@ -1,0 +1,33 @@
+@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Înregistrare";
+}
+
+<h1>Înregistrare</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" type="text" autocomplete="name" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+
+    <input type="submit" value="Înregistrare" class="btn btn-primary" />
+</form>

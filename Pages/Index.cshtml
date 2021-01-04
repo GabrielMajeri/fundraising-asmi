@@ -25,12 +25,32 @@
     </p>
 </div>
 
+@{
+    var loggedIn = Model.AppUser != null;
+}
+
+@if (loggedIn)
+{
+    <p>
+        Sunteți logat ca @Model.AppUser.FullName (@Model.AppUser.Email)
+    </p>
+}
+
+<p>
+    <a asp-page="/Login" class="btn btn-primary">Logare utilizator existent</a>
+    <a asp-page="/Register" class="btn btn-primary">Înregistrare utilizator nou</a>
+    @if (loggedIn)
+    {
+        <a asp-page="/Logout" class="btn btn-danger">Delogare</a>
+    }
+</p>
+
 @if (Model.UserIsAdmin)
 {
     <section>
-    <h2>Administrare</h2>
-    <a asp-page="/Users/Index" class="btn btn-danger ml-3" role="button">
-        Listă utilizatori
-    </a>
-</section>
+        <h2>Administrare</h2>
+        <a asp-page="/Users/Index" class="btn btn-warning ml-3" role="button">
+            Listă utilizatori
+        </a>
+    </section>
 }
