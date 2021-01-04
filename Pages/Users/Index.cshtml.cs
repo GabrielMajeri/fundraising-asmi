@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Attributes;
 
 namespace Asmi.Fundraising.Pages.Users
 {
     [Authorize(Roles = "Administrator")]
+    [Breadcrumb("Utilizatori", FromPage = typeof(Pages.IndexModel))]
     public class IndexModel : PageModel
     {
         private UserManager<AppUser> _userManager;

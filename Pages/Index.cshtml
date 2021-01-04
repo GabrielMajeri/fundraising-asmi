@@ -37,11 +37,14 @@
 }
 
 <p>
-    <a asp-page="/Login" class="btn btn-primary">Logare utilizator existent</a>
-    <a asp-page="/Register" class="btn btn-primary">Înregistrare utilizator nou</a>
     @if (loggedIn)
     {
         <a asp-page="/Logout" class="btn btn-danger">Delogare</a>
+    }
+    else
+    {
+        <a asp-page="/Login" class="btn btn-primary">Logare utilizator existent</a>
+        <a asp-page="/Register" class="btn btn-primary">Înregistrare utilizator nou</a>
     }
 </p>
 
