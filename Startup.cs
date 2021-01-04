@@ -63,7 +63,7 @@ namespace Asmi.Fundraising
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
-                options.ForwardedHeaders = ForwardedHeaders.All;
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;
             });
 
             services.AddTransient<SeedUserRoles>();
