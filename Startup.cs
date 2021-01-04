@@ -5,6 +5,7 @@ using Asmi.Fundraising.Models;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +61,11 @@ namespace Asmi.Fundraising
 
             services.AddBreadcrumbs(GetType().Assembly);
 
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.All;
+            });
+
             services.AddTransient<SeedUserRoles>();
             services.AddTransient<SeedData>();
 
@@ -92,6 +98,7 @@ namespace Asmi.Fundraising
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseForwardedHeaders();
                 app.UseHsts();
             }
 
