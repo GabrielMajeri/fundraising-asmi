@@ -91,6 +91,8 @@ namespace Asmi.Fundraising
                 context.Database.EnsureDeleted();
             }
 
+            app.UseForwardedHeaders();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -98,7 +100,6 @@ namespace Asmi.Fundraising
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseForwardedHeaders();
                 app.UseHsts();
             }
 
