@@ -33,7 +33,8 @@ namespace Asmi.Fundraising.Data
         {
             await EnsureRoleExists(AppRole.Admin);
 
-            if (_isDevelopment)
+            // Seed users unconditionally
+            //if (_isDevelopment)
             {
                 await EnsureUserExists(
                     "Example user",
