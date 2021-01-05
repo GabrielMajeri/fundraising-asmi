@@ -8,9 +8,12 @@
                 <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-warning" role="button">
                     Editează
                 </a>
-                <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger" role="button">
-                    Șterge
-                </a>
+                @if (User.IsInRole(Models.AppRole.Admin))
+                {
+                    <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-danger" role="button">
+                        Șterge
+                    </a>
+                }
             </div>
         </div>
         <div class="mt-3">

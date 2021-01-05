@@ -7,9 +7,12 @@
             <a asp-page="Contacts/Edit" asp-route-Id="@Model.Id" class="btn btn-warning" role="button">
                 Editează
             </a>
-            <a asp-page="Contacts/Delete" asp-route-Id="@Model.Id" class="btn btn-danger" role="button">
-                Șterge
-            </a>
+            @if (User.IsInRole(Models.AppRole.Admin))
+            {
+                <a asp-page="Contacts/Delete" asp-route-Id="@Model.Id" class="btn btn-danger" role="button">
+                    Șterge
+                </a>
+            }
         </div>
     </div>
     @if (Model.Email != null)

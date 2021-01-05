@@ -1,10 +1,13 @@
 using System.Threading.Tasks;
 using Asmi.Fundraising.Data;
+using Asmi.Fundraising.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Asmi.Fundraising.Pages.Companies.Contacts
 {
+    [Authorize(Roles = AppRole.Admin)]
     public class DeleteModel : PageModel
     {
         private readonly AppDbContext _context;
